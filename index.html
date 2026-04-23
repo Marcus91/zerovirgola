@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeroVirgola — Giochi di Precisione</title>
+<meta name="description" content="Sei preciso quanto pensi? 6 mini-giochi per sfidare il tuo cervello. Gratis, senza download, condivisibili.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;--color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;--color-border:#d4d1ca;
+  --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;--color-success-highlight:#d4dfcc;
+  --color-warning:#964219;--color-warning-highlight:#ddcfc6;
+  --color-orange:#da7101;--color-orange-highlight:#e7d7c4;
+  --color-purple:#7a39bb;--color-purple-highlight:#dacfde;
+  --color-blue:#006494;--color-blue-highlight:#c6d8e4;
+  --color-error:#a12c7b;--color-error-highlight:#e0ced7;
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80/0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80/0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80/0.14);
+  --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;
+  --space-16:4rem;--space-20:5rem;--space-24:6rem;
+  --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+  --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+  --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --text-hero:clamp(3rem,.5rem + 7vw,7rem);
+  --font-display:'Instrument Serif',Georgia,serif;
+  --font-body:'DM Sans','Helvetica Neue',sans-serif;
+  --transition:180ms cubic-bezier(.16,1,.3,1);
+  --content-default:960px;--content-wide:1200px;
+}
+[data-theme="dark"]{
+  --color-bg:#0e0d0b;--color-surface:#161512;--color-surface-2:#1c1b18;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#2d2c2a;
+  --color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#1e3538;
+  --color-success:#6daa45;--color-success-highlight:#2a3820;
+  --color-warning:#bb653b;--color-warning-highlight:#3d2e1e;
+  --color-orange:#fdab43;--color-orange-highlight:#3a2c18;
+  --color-purple:#a86fdf;--color-purple-highlight:#2e2040;
+  --color-blue:#5591c7;--color-blue-highlight:#1a2c40;
+  --color-error:#d163a7;--color-error-highlight:#3a1f30;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.25);
+  --shadow-md:0 4px 12px oklch(0 0 0/.35);
+  --shadow-lg:0 12px 32px oklch(0 0 0/.5);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){
+  --color-bg:#0e0d0b;--color-surface:#161512;--color-surface-2:#1c1b18;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#2d2c2a;
+  --color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;
+  --color-primary-highlight:#1e3538;
+  --color-success:#6daa45;--color-warning:#bb653b;--color-orange:#fdab43;
+  --color-purple:#a86fdf;--color-blue:#5591c7;--color-error:#d163a7;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.25);
+  --shadow-md:0 4px 12px oklch(0 0 0/.35);
+  --shadow-lg:0 12px 32px oklch(0 0 0/.5);
+}}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:80px;}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);overflow-x:hidden;}
+img,svg{display:block;max-width:100%;}
+button,a{cursor:pointer;font:inherit;color:inherit;text-decoration:none;}
+button{background:none;border:none;}
+a,button,[role="button"]{transition:color var(--transition),background var(--transition),border-color var(--transition),box-shadow var(--transition),opacity var(--transition),transform var(--transition);}
+::selection{background:oklch(from var(--color-primary) l c h/.25);color:var(--color-text);}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* ── LAYOUT ── */
+.container{max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-6);}
+.container--wide{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-6);}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:oklch(from var(--color-bg) l c h/.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--color-divider);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{display:flex;align-items:center;gap:var(--space-3);}
+.nav-logo-icon{width:32px;height:32px;}
+.nav-brand{font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:-.01em;}
+.nav-brand span{color:var(--color-primary);}
+.nav-right{display:flex;align-items:center;gap:var(--space-3);}
+.nav-cta{background:var(--color-primary);color:#fff;border-radius:var(--radius-full);padding:var(--space-2) var(--space-5);font-size:var(--text-sm);font-weight:600;}
+.nav-cta:hover{background:var(--color-primary-hover);}
+.theme-btn{width:38px;height:38px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);border:1px solid var(--color-border);}
+.theme-btn:hover{color:var(--color-text);background:var(--color-surface);}
+
+/* ── HERO ── */
+.hero{padding:clamp(var(--space-16),10vw,var(--space-24)) 0 clamp(var(--space-12),8vw,var(--space-20));position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);margin-bottom:var(--space-5);}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--color-primary);animation:pulse 2s ease-in-out infinite;}
+.hero-title{font-family:var(--font-display);font-size:var(--text-hero);line-height:1.05;color:var(--color-text);margin-bottom:var(--space-6);}
+.hero-title em{font-style:italic;color:var(--color-primary);}
+.hero-sub{font-size:var(--text-lg);color:var(--color-text-muted);line-height:1.6;max-width:44ch;margin-bottom:var(--space-8);}
+.hero-actions{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;}
+.btn-primary{background:var(--color-primary);color:#fff;border-radius:var(--radius-full);padding:var(--space-4) var(--space-8);font-size:var(--text-base);font-weight:600;box-shadow:var(--shadow-sm);display:inline-flex;align-items:center;gap:var(--space-2);}
+.btn-primary:hover{background:var(--color-primary-hover);box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.btn-ghost{color:var(--color-text-muted);font-size:var(--text-sm);display:inline-flex;align-items:center;gap:var(--space-1);}
+.btn-ghost:hover{color:var(--color-text);}
+.hero-stats{display:flex;gap:var(--space-8);margin-top:var(--space-10);}
+.hero-stat-val{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);}
+.hero-stat-key{font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;}
+
+/* HERO VISUAL */
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative;}
+.hero-clock{width:280px;height:280px;position:relative;}
+.hero-clock-svg{width:100%;height:100%;}
+.hero-clock-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.hero-clock-num{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-text);}
+.hero-clock-sub{font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.1em;}
+.floating-badge{position:absolute;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-3) var(--space-4);box-shadow:var(--shadow-md);font-size:var(--text-xs);color:var(--color-text-muted);display:flex;align-items:center;gap:var(--space-2);animation:float 3s ease-in-out infinite;}
+.floating-badge:nth-child(2){top:10%;right:-5%;animation-delay:.5s;}
+.floating-badge:nth-child(3){bottom:15%;left:-8%;animation-delay:1.2s;}
+.floating-badge .fb-val{font-weight:700;color:var(--color-text);font-family:var(--font-display);}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+
+/* ── SECTION TITLES ── */
+.section-label{font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);margin-bottom:var(--space-3);}
+.section-title{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.1;color:var(--color-text);margin-bottom:var(--space-4);}
+.section-sub{font-size:var(--text-base);color:var(--color-text-muted);max-width:52ch;line-height:1.7;}
+
+/* ── GAMES GRID ── */
+.games-section{padding:clamp(var(--space-16),8vw,var(--space-24)) 0;}
+.games-header{margin-bottom:var(--space-12);}
+.games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);}
+.game-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow var(--transition),transform var(--transition);position:relative;}
+.game-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+.game-card--featured{grid-column:span 2;}
+.game-card-header{padding:var(--space-8) var(--space-6) var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);flex:1;}
+.game-card--featured .game-card-header{padding:var(--space-10) var(--space-8) var(--space-6);}
+.game-icon-wrap{width:52px;height:52px;border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;font-size:1.6rem;}
+.game-card--featured .game-icon-wrap{width:64px;height:64px;font-size:2rem;border-radius:var(--radius-xl);}
+.game-tag{display:inline-flex;align-items:center;gap:var(--space-1);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:2px var(--space-2);border-radius:var(--radius-full);}
+.game-tag--live{background:var(--color-success-highlight);color:var(--color-success);}
+.game-tag--soon{background:var(--color-surface-offset);color:var(--color-text-faint);}
+.game-tag-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+.game-title{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);line-height:1.15;}
+.game-card--featured .game-title{font-size:var(--text-2xl);}
+.game-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;max-width:38ch;}
+.game-card--featured .game-desc{font-size:var(--text-base);max-width:46ch;}
+.game-footer{padding:var(--space-4) var(--space-6);border-top:1px solid var(--color-divider);display:flex;align-items:center;justify-content:space-between;}
+.game-card--featured .game-footer{padding:var(--space-5) var(--space-8);}
+.game-play-btn{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:600;padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);}
+.game-play-btn--active{background:var(--color-primary);color:#fff;}
+.game-play-btn--active:hover{background:var(--color-primary-hover);}
+.game-play-btn--soon{background:var(--color-surface-offset);color:var(--color-text-faint);cursor:default;}
+.game-plays{font-size:var(--text-xs);color:var(--color-text-faint);}
+
+/* COLOR ACCENTS per card */
+.accent-teal .game-icon-wrap{background:var(--color-primary-highlight);}
+.accent-green .game-icon-wrap{background:var(--color-success-highlight);}
+.accent-orange .game-icon-wrap{background:var(--color-orange-highlight);}
+.accent-purple .game-icon-wrap{background:var(--color-purple-highlight);}
+.accent-blue .game-icon-wrap{background:var(--color-blue-highlight);}
+.accent-pink .game-icon-wrap{background:var(--color-error-highlight);}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:clamp(var(--space-16),8vw,var(--space-20)) 0;border-top:1px solid var(--color-divider);}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;}
+.how-steps{display:flex;flex-direction:column;gap:var(--space-6);}
+.how-step{display:flex;gap:var(--space-5);align-items:flex-start;}
+.how-step-num{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-primary);line-height:1;min-width:40px;}
+.how-step-body strong{display:block;font-size:var(--text-base);font-weight:600;color:var(--color-text);margin-bottom:var(--space-1);}
+.how-step-body p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;max-width:36ch;}
+.how-visual{display:flex;flex-direction:column;gap:var(--space-4);}
+.share-mockup{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5) var(--space-6);box-shadow:var(--shadow-md);}
+.share-mockup-label{font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--space-3);}
+.share-mockup-text{font-size:var(--text-sm);color:var(--color-text);line-height:1.6;}
+.share-mockup-text strong{color:var(--color-primary);}
+.share-mockup-footer{display:flex;gap:var(--space-2);margin-top:var(--space-4);flex-wrap:wrap;}
+.share-chip{font-size:var(--text-xs);background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-1) var(--space-3);color:var(--color-text-muted);}
+
+/* ── TESTIMONIALS / SOCIAL PROOF ── */
+.proof-section{padding:clamp(var(--space-12),6vw,var(--space-20)) 0;border-top:1px solid var(--color-divider);}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);}
+.proof-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);}
+.proof-text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-4);}
+.proof-text strong{color:var(--color-text);}
+.proof-author{display:flex;align-items:center;gap:var(--space-3);}
+.proof-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--color-surface-offset);}
+.proof-name{font-size:var(--text-sm);font-weight:600;color:var(--color-text);}
+.proof-handle{font-size:var(--text-xs);color:var(--color-text-faint);}
+
+/* ── CTA BANNER ── */
+.cta-section{padding:clamp(var(--space-16),8vw,var(--space-24)) 0;}
+.cta-inner{background:var(--color-primary);border-radius:var(--radius-2xl);padding:clamp(var(--space-12),5vw,var(--space-16));display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
+.cta-text .cta-title{font-family:var(--font-display);font-size:var(--text-2xl);color:#fff;margin-bottom:var(--space-3);}
+.cta-text .cta-sub{font-size:var(--text-base);color:oklch(1 0 0 /.7);max-width:44ch;}
+.btn-cta-white{background:#fff;color:var(--color-primary);border-radius:var(--radius-full);padding:var(--space-4) var(--space-8);font-size:var(--text-base);font-weight:700;white-space:nowrap;flex-shrink:0;}
+.btn-cta-white:hover{background:oklch(1 0 0 /.92);transform:translateY(-1px);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--color-divider);padding:var(--space-10) 0;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);}
+.footer-logo{font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-text-muted);}
+.footer-logo span{color:var(--color-primary);}
+.footer-links{display:flex;gap:var(--space-6);}
+.footer-links a{font-size:var(--text-sm);color:var(--color-text-faint);}
+.footer-links a:hover{color:var(--color-text-muted);}
+.footer-copy{font-size:var(--text-xs);color:var(--color-text-faint);}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--space-10);}
+  .hero-visual{order:-1;}
+  .hero-clock{width:200px;height:200px;}
+  .floating-badge{display:none;}
+  .games-grid{grid-template-columns:1fr;}
+  .game-card--featured{grid-column:span 1;}
+  .how-grid{grid-template-columns:1fr;}
+  .proof-grid{grid-template-columns:1fr;}
+  .cta-inner{flex-direction:column;text-align:center;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{flex-wrap:wrap;justify-content:center;}
+  .hero-stats{gap:var(--space-6);}
+  .nav-cta{display:none;}
+}
+@media(max-width:480px){
+  .container,.container--wide{padding-inline:var(--space-4);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <svg class="nav-logo-icon" viewBox="0 0 32 32" fill="none" aria-label="ZeroVirgola">
+        <circle cx="16" cy="16" r="14" stroke="var(--color-primary)" stroke-width="2" stroke-dasharray="44 44" stroke-dashoffset="11" stroke-linecap="round" transform="rotate(-90 16 16)"/>
+        <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+        <line x1="16" y1="16" x2="16" y2="5" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="21" cy="26" r="2" fill="var(--color-primary)" opacity=".5"/>
+      </svg>
+      <span class="nav-brand">Zero<span>Virgola</span></span>
+    </a>
+    <div class="nav-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Cambia tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="#giochi" class="nav-cta">Gioca ora</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="hero-dot"></span> 6 mini-giochi · gratis · no download</div>
+      <h1 class="hero-title">Sei preciso<br>quanto <em>pensi?</em></h1>
+      <p class="hero-sub">Sfida il tuo cervello con giochi di precisione in meno di un minuto. Condividi il punteggio, sfida gli amici.</p>
+      <div class="hero-actions">
+        <a href="#giochi" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Inizia a giocare
+        </a>
+        <a href="#come-funziona" class="btn-ghost">Come funziona <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val" id="live-players">1.847</div>
+          <div class="hero-stat-key">Partite oggi</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">6</div>
+          <div class="hero-stat-key">Mini-giochi</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">0,3s</div>
+          <div class="hero-stat-key">Record mondiale</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-clock">
+        <svg class="hero-clock-svg" viewBox="0 0 280 280">
+          <circle cx="140" cy="140" r="130" fill="none" stroke="var(--color-surface-offset)" stroke-width="12"/>
+          <circle cx="140" cy="140" r="130" fill="none" stroke="var(--color-primary)" stroke-width="12" stroke-linecap="round"
+            stroke-dasharray="816" stroke-dashoffset="204" id="hero-arc" transform="rotate(-90 140 140)"/>
+          <circle cx="140" cy="140" r="4" fill="var(--color-primary)"/>
+          <line x1="140" y1="140" x2="140" y2="52" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" id="hero-hand"/>
+        </svg>
+        <div class="hero-clock-inner">
+          <span class="hero-clock-num" id="hero-time">0:45</span>
+          <span class="hero-clock-sub">in corso...</span>
+        </div>
+        <div class="floating-badge" style="top:8%;right:-12%;">
+          <span>🎯</span><span>Errore <span class="fb-val">±0.3s</span></span>
+        </div>
+        <div class="floating-badge" style="bottom:12%;left:-14%;">
+          <span>🏆</span><span>Record <span class="fb-val">Marco</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES GRID -->
+<section class="games-section" id="giochi">
+  <div class="container--wide">
+    <div class="games-header">
+      <div class="section-label">I giochi</div>
+      <h2 class="section-title">Scegli la tua sfida</h2>
+      <p class="section-sub">Un gioco alla volta. Trenta secondi al massimo. Un risultato da condividere.</p>
+    </div>
+
+    <div class="games-grid">
+
+      <!-- FEATURED: Un Minuto Esatto -->
+      <div class="game-card game-card--featured accent-teal">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">⏱</div>
+            <span class="game-tag game-tag--live"><span class="game-tag-dot"></span>Live</span>
+          </div>
+          <div>
+            <div class="game-title">Un Minuto Esatto</div>
+            <div class="game-desc">Schermo nero. Nessun suono. Premi STOP quando pensi che sia passato esattamente un minuto. Quanto è preciso il tuo orologio interno?</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <a href="un-minuto-esatto.html" class="game-play-btn game-play-btn--active">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Gioca ora
+          </a>
+          <span class="game-plays" id="card-plays">2.341 partite</span>
+        </div>
+      </div>
+
+      <!-- Titolo Falso -->
+      <div class="game-card accent-orange">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">📰</div>
+            <span class="game-tag game-tag--soon">Presto</span>
+          </div>
+          <div>
+            <div class="game-title">Il Titolo Falso</div>
+            <div class="game-desc">Tre notizie vere, una inventata. Ma le vere sono così assurde...</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-play-btn game-play-btn--soon">Prossimamente</span>
+        </div>
+      </div>
+
+      <!-- Quanto dura? -->
+      <div class="game-card accent-blue">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">🎬</div>
+            <span class="game-tag game-tag--soon">Presto</span>
+          </div>
+          <div>
+            <div class="game-title">Quanto Dura?</div>
+            <div class="game-desc">Un video sta per partire. Indovina la sua durata prima di vederlo.</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-play-btn game-play-btn--soon">Prossimamente</span>
+        </div>
+      </div>
+
+      <!-- Disegna al buio -->
+      <div class="game-card accent-purple">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">🎨</div>
+            <span class="game-tag game-tag--soon">Presto</span>
+          </div>
+          <div>
+            <div class="game-title">Disegna al Buio</div>
+            <div class="game-desc">Disegna con gli occhi chiusi. L'AI giudica il risultato. La gallery è esilarante.</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-play-btn game-play-btn--soon">Prossimamente</span>
+        </div>
+      </div>
+
+      <!-- Spiega come a 6 anni -->
+      <div class="game-card accent-green">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">🧒</div>
+            <span class="game-tag game-tag--soon">Presto</span>
+          </div>
+          <div>
+            <div class="game-title">Spiega a 6 Anni</div>
+            <div class="game-desc">Hai 30 secondi per spiegare "inflazione" come fossi un bambino di prima elementare.</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-play-btn game-play-btn--soon">Prossimamente</span>
+        </div>
+      </div>
+
+      <!-- Mappa Bugiarda -->
+      <div class="game-card accent-pink">
+        <div class="game-card-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div class="game-icon-wrap">🗺️</div>
+            <span class="game-tag game-tag--soon">Presto</span>
+          </div>
+          <div>
+            <div class="game-title">La Mappa Bugiarda</div>
+            <div class="game-desc">Una cartina geografica con un errore volutamente sbagliato. Trovalo entro 10 secondi.</div>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-play-btn game-play-btn--soon">Prossimamente</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="come-funziona">
+  <div class="container how-grid">
+    <div>
+      <div class="section-label">Come funziona</div>
+      <h2 class="section-title">Gioca in<br><em style="font-style:italic;color:var(--color-primary)">trenta secondi</em></h2>
+      <div class="how-steps" style="margin-top:var(--space-8);">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-body">
+            <strong>Scegli un gioco</strong>
+            <p>Ogni gioco ha una regola sola. Niente tutorial, niente registrazione.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-body">
+            <strong>Gioca e scopri il risultato</strong>
+            <p>Hai il tuo punteggio in meno di un minuto. Più preciso sei, meglio è.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-body">
+            <strong>Sfida gli amici</strong>
+            <p>Condividi il risultato su WhatsApp o Instagram. Vedere chi vince.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual">
+      <div class="share-mockup">
+        <div class="share-mockup-label">Risultato condiviso</div>
+        <div class="share-mockup-text">
+          ⏱ <strong>Un Minuto Esatto</strong> — ho fermato il tempo a <strong>1:01</strong>, errore di soli <strong>±1.2s</strong>! 🎯 Precisissimo<br><br>
+          Riesci a fare meglio? → <strong>zerovirgola.it</strong>
+        </div>
+        <div class="share-mockup-footer">
+          <span class="share-chip">📱 WhatsApp</span>
+          <span class="share-chip">📸 Instagram</span>
+          <span class="share-chip">💬 Telegram</span>
+          <span class="share-chip">🐦 X</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--space-4);">
+        <div style="flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary);">100%</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;">Gratis</div>
+        </div>
+        <div style="flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary);">0</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;">Download</div>
+        </div>
+        <div style="flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary);">&lt;60s</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;">Per partita</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section">
+  <div class="container">
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-text">"Ho fatto <strong>±0.8 secondi</strong> al primo tentativo. Ho passato la serata a sfidare colleghi e amici. Impossibile smettere."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">🧑‍💻</div>
+          <div><div class="proof-name">Luca M.</div><div class="proof-handle">Milano</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-text">"Mio figlio di 10 anni <strong>mi batte sempre</strong>. Ora è diventata una tradizione serale. Semplice ma fa perdere il conto del tempo."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">👩</div>
+          <div><div class="proof-name">Sara T.</div><div class="proof-handle">Roma</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-text">"Ho condiviso su Instagram il mio <strong>errore di 23 secondi</strong>. La gente si è sfidava nei commenti per ore. Virale senza sforzo."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">🧑</div>
+          <div><div class="proof-name">Alex R.</div><div class="proof-handle">Torino</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="cta-title">Pronto a scoprire<br>quanto sei preciso?</div>
+        <div class="cta-sub">Niente account. Niente download. Solo tu, il tuo cervello e un minuto di tempo.</div>
+      </div>
+      <a href="un-minuto-esatto.html" class="btn-cta-white">Gioca adesso →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">Zero<span>Virgola</span></div>
+    <div class="footer-links">
+      <a href="#giochi">Giochi</a>
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contatti</a>
+    </div>
+    <div class="footer-copy">© 2026 ZeroVirgola · Fatto con ❤️ in Italia</div>
+  </div>
+</footer>
+
+<script>
+// THEME TOGGLE
+(function(){
+  const btn = document.querySelector('[data-theme-toggle]');
+  const root = document.documentElement;
+  let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+  function updateIcon(){
+    btn.innerHTML = theme === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  updateIcon();
+  btn.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    updateIcon();
+  });
+})();
+
+// HERO CLOCK ANIMATION
+(function(){
+  const arc = document.getElementById('hero-arc');
+  const hand = document.getElementById('hero-hand');
+  const timeEl = document.getElementById('hero-time');
+  const CIRC = 2 * Math.PI * 130;
+  let progress = 0.75;
+  let dir = 1;
+  function tick(){
+    progress += 0.0015 * dir;
+    if (progress >= 1){ progress = 1; dir = -1; }
+    if (progress <= 0){ progress = 0; dir = 1; }
+    const offset = CIRC * (1 - progress);
+    arc.style.strokeDashoffset = offset;
+    const angle = progress * 360 - 90;
+    const rad = angle * Math.PI / 180;
+    const x2 = 140 + 88 * Math.cos(rad);
+    const y2 = 140 + 88 * Math.sin(rad);
+    hand.setAttribute('x2', x2);
+    hand.setAttribute('y2', y2);
+    const seconds = Math.round(progress * 60);
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    timeEl.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// LIVE COUNTER
+(function(){
+  const el = document.getElementById('live-players');
+  const playsEl = document.getElementById('card-plays');
+  let count = 1847;
+  let plays = 2341;
+  setInterval(() => {
+    if (Math.random() > 0.5) {
+      count += Math.floor(Math.random() * 2) + 1;
+      el.textContent = count.toLocaleString('it-IT');
+    }
+    if (Math.random() > 0.6) {
+      plays += Math.floor(Math.random() * 2) + 1;
+      if (playsEl) playsEl.textContent = plays.toLocaleString('it-IT') + ' partite';
+    }
+  }, 4000);
+})();
+</script>
+</body>
+</html>
