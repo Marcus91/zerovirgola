@@ -409,7 +409,7 @@ function getRating(errorMs) {
   if (s <= 2)  return { cls:'perfect', badge:'⏱ Orologio Svizzero',  label:'Incredibile! Hai il tempo nel sangue.' };
   if (s <= 5)  return { cls:'great',   badge:'🎯 Precisissimo',       label:'Ottimo! Quasi perfetto.' };
   if (s <= 12) return { cls:'ok',      badge:'👍 Nella media',         label:'Non male — riprova per migliorare.' };
-  if (s <= 25) return { cls:'ok',      badge:'⏰ Un po' distratto',    label:'Il tempo ti ha ingannato!' };
+  if (s <= 25) return { cls:'ok', badge:'⏰ Un po\\' distratto', label:'Il tempo ti ha ingannato!' };
   return         { cls:'bad',   badge:'💀 Orologio rotto',      label:'Ops... il tempo è relativo, forse.' };
 }
 
