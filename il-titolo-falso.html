@@ -60,7 +60,7 @@ footer{padding:0 0 var(--space-10);text-align:center;color:var(--color-text-fain
     </div>
     <div class="intro-grid">
       <div class="intro-item"><strong>10 round</strong><p>Partita rapida, perfetta da condividere.</p></div>
-      <div class="intro-item"><strong>12 secondi</strong><p>Il tempo stringe, quindi vai d'istinto.</p></div>
+      <div class="intro-item"><strong>30 secondi</strong><p>Il tempo stringe, quindi vai d'istinto.</p></div>
       <div class="intro-item"><strong>Score finale</strong><p>Risultato pronto per WhatsApp o Instagram.</p></div>
     </div>
     <div style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap">
@@ -76,7 +76,7 @@ footer{padding:0 0 var(--space-10);text-align:center;color:var(--color-text-fain
         <div class="progress-pill">Punti <span id="scoreNum">0</span></div>
       </div>
       <div class="timer-wrap">
-        <div class="timer" id="timerNum">12</div>
+        <div class="timer" id="timerNum">30</div>
         <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
       </div>
     </div>
@@ -211,7 +211,7 @@ const shareBox = document.getElementById('shareBox');
 const againBtn = document.getElementById('againBtn');
 const copyBtn = document.getElementById('copyBtn');
 
-let state = {index:0, score:0, correct:0, streak:0, bestStreak:0, answered:false, selected:null, timer:12, interval:null, order:[]};
+let state = {index:0, score:0, correct:0, streak:0, bestStreak:0, answered:false, selected:null, timer:30, interval:null, order:[]};
 
 function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
 function show(screen){ [introScreen, gameScreen, resultScreen].forEach(s => s.classList.add('hidden')); screen.classList.remove('hidden'); }
@@ -222,14 +222,14 @@ function setTheme(){ const root = document.documentElement; let theme = root.get
 setTheme();
 
 function startGame(){
-  state = {index:0, score:0, correct:0, streak:0, bestStreak:0, answered:false, selected:null, timer:12, interval:null, order:shuffle(rounds)};
+  state = {index:0, score:0, correct:0, streak:0, bestStreak:0, answered:false, selected:null, timer:30, interval:null, order:shuffle(rounds)};
   show(gameScreen);
   renderRound();
 }
 
 function renderRound(){
   const current = state.order[state.index];
-  state.answered = false; state.selected = null; state.timer = 12;
+  state.answered = false; state.selected = null; state.timer = 30;
   roundNum.textContent = state.index + 1; scoreNum.textContent = state.score; correctNum.textContent = state.correct; streakNum.textContent = state.streak;
   nextBtn.textContent = 'Seleziona un titolo'; nextBtn.disabled = true; feedback.className = 'feedback'; feedback.innerHTML = '';
   answersEl.innerHTML = '';
@@ -246,7 +246,7 @@ function renderRound(){
   state.interval = setInterval(() => {
     state.timer -= 1;
     timerNum.textContent = state.timer;
-    timerFill.style.width = `${(state.timer/12)*100}%`;
+    timerFill.style.width = `${(state.timer/30)*100}%`;
     if(state.timer <= 0){ clearInterval(state.interval); if(!state.answered) timeoutRound(); }
   }, 1000);
 }
