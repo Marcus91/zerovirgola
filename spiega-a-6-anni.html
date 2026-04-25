@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiega a 6 Anni — ZeroVirgola</title>
+<meta name="description" content="Hai 30 secondi per spiegare una parola difficile usando solo parole semplici.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{--color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;--color-surface-offset:#f3f0ec;--color-divider:#dcd9d5;--color-border:#d4d1ca;--color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;--color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-highlight:#cedcd8;--color-success:#437a22;--color-success-highlight:#d4dfcc;--color-warning:#964219;--color-warning-highlight:#ddcfc6;--color-error:#a12c7b;--color-error-highlight:#e0ced7;--shadow-sm:0 1px 2px oklch(0.2 0.01 80/.06);--shadow-md:0 4px 12px oklch(0.2 0.01 80/.08);--shadow-lg:0 12px 32px oklch(0.2 0.01 80/.12);--radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;--space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--text-xs:clamp(.75rem,.7rem + .25vw,.875rem);--text-sm:clamp(.875rem,.8rem + .35vw,1rem);--text-base:clamp(1rem,.95rem + .25vw,1.125rem);--text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);--text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);--font-display:"Instrument Serif",Georgia,serif;--font-body:"DM Sans","Helvetica Neue",sans-serif;--transition:180ms cubic-bezier(.16,1,.3,1)}
+[data-theme="dark"]{--color-bg:#0f0e0c;--color-surface:#161512;--color-surface-2:#1c1b18;--color-surface-offset:#1d1c1a;--color-divider:#262523;--color-border:#393836;--color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;--color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-highlight:#1e3538;--color-success:#6daa45;--color-success-highlight:#2a3820;--color-warning:#bb653b;--color-warning-highlight:#3d2e1e;--color-error:#d163a7;--color-error-highlight:#3a1f30;--shadow-sm:0 1px 2px oklch(0 0 0/.2);--shadow-md:0 4px 12px oklch(0 0 0/.3);--shadow-lg:0 12px 32px oklch(0 0 0/.45)}
+*{box-sizing:border-box;margin:0;padding:0} html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility} body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:radial-gradient(circle at top,oklch(from var(--color-primary) l c h/.07),transparent 30%),var(--color-bg);overflow-x:hidden} button,a{font:inherit;color:inherit} button{background:none;border:none;cursor:pointer} a{text-decoration:none} :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+.container{max-width:760px;margin:0 auto;padding:0 var(--space-4)}
+nav{position:sticky;top:0;z-index:20;background:oklch(from var(--color-bg) l c h/.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider)}
+.nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:var(--space-3)}
+.brand-mark{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--color-primary-highlight);color:var(--color-primary);font-size:16px}
+.brand-name{font-family:var(--font-display);font-size:var(--text-lg)}.brand-name span{color:var(--color-primary)}
+.nav-actions{display:flex;gap:var(--space-3);align-items:center}
+.theme-btn,.ghost-btn{border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-muted);border-radius:var(--radius-full)}
+.theme-btn{width:38px;height:38px;display:grid;place-items:center}
+.ghost-btn{padding:.65rem 1rem;font-size:var(--text-sm)}
+.hero{padding:var(--space-12) 0 var(--space-8);text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .8rem;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-border);font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)}
+.title{margin-top:var(--space-6);font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.05}
+.title em{font-style:italic;color:var(--color-primary)}
+.sub{max-width:42ch;margin:var(--space-4) auto 0;color:var(--color-text-muted);line-height:1.7}
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg)}
+.stage{padding-bottom:var(--space-16)}
+.game-shell{padding:var(--space-8);display:grid;gap:var(--space-6)}
+/* TIMER RING */
+.timer-wrap{display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
+.timer-ring{position:relative;width:100px;height:100px}
+.timer-ring svg{transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:var(--color-surface-offset);stroke-width:8}
+.ring-fill{fill:none;stroke:var(--color-primary);stroke-width:8;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear,stroke .5s}
+.ring-fill.urgent{stroke:var(--color-warning)}
+.ring-fill.danger{stroke:var(--color-error)}
+.ring-num{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text)}
+.timer-label{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint)}
+/* WORD CARD */
+.word-card{padding:var(--space-8);background:var(--color-primary-highlight);border-radius:var(--radius-xl);text-align:center;border:1px solid oklch(from var(--color-primary) l c h/.2)}
+.word-hint{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary);margin-bottom:var(--space-3);opacity:.8}
+.word-main{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-primary);line-height:1.1}
+/* TEXTAREA */
+.textarea-wrap{position:relative}
+textarea{width:100%;min-height:120px;background:var(--color-surface-2);border:2px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5);font:inherit;font-size:var(--text-base);color:var(--color-text);resize:none;line-height:1.65;transition:border-color var(--transition)}
+textarea:focus{outline:none;border-color:var(--color-primary)}
+textarea:disabled{opacity:.6;cursor:not-allowed}
+.char-count{position:absolute;bottom:var(--space-3);right:var(--space-4);font-size:var(--text-xs);color:var(--color-text-faint)}
+/* FORBIDDEN PILLS */
+.forbidden-wrap{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.forbidden-label{width:100%;font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--space-1)}
+.forbidden-pill{padding:.3rem .65rem;border-radius:999px;font-size:var(--text-xs);background:var(--color-error-highlight);color:var(--color-error);font-weight:600}
+/* SCORE METER */
+.meter-wrap{display:flex;flex-direction:column;gap:var(--space-2)}
+.meter-bar{height:12px;background:var(--color-surface-offset);border-radius:999px;overflow:hidden}
+.meter-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--color-error),var(--color-warning),var(--color-success));transition:width .8s cubic-bezier(.16,1,.3,1)}
+.meter-labels{display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--color-text-faint)}
+/* FEEDBACK */
+.feedback{padding:var(--space-5);border-radius:var(--radius-xl);display:none;animation:pop .4s cubic-bezier(.16,1,.3,1) forwards}
+.feedback.show{display:block}
+@keyframes pop{0%{transform:scale(.95);opacity:0}100%{transform:scale(1);opacity:1}}
+.feedback.good{background:var(--color-success-highlight);color:var(--color-success)}
+.feedback.mid{background:var(--color-warning-highlight);color:var(--color-warning)}
+.feedback.bad{background:var(--color-error-highlight);color:var(--color-error)}
+.feedback strong{display:block;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.feedback p{font-size:var(--text-sm);line-height:1.6;opacity:.9}
+.highlighted-word{background:oklch(from var(--color-error) l c h/.25);color:var(--color-error);border-radius:3px;padding:0 3px;font-weight:600}
+/* BUTTONS */
+.btn-primary{padding:.95rem 2rem;border-radius:999px;background:var(--color-primary);color:#fff;font-weight:700;box-shadow:var(--shadow-sm);font-size:var(--text-base)}
+.btn-primary:hover{background:var(--color-primary-hover)}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed}
+.btn-secondary{padding:.95rem 2rem;border-radius:999px;background:var(--color-surface-offset);color:var(--color-text-muted);border:1px solid var(--color-border);font-size:var(--text-base)}
+.actions{display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap}
+/* INTRO / RESULT */
+.intro-box,.result-box{padding:var(--space-8);display:grid;gap:var(--space-6);text-align:center}
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+.intro-item{padding:var(--space-5);background:var(--color-surface-offset);border-radius:var(--radius-xl)}
+.intro-item strong{display:block;color:var(--color-text);margin-bottom:.3rem}
+.intro-item p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55}
+.result-score{font-family:var(--font-display);font-size:clamp(3rem,8vw,5.5rem);line-height:1;color:var(--color-primary)}
+.result-title{font-family:var(--font-display);font-size:var(--text-xl)}
+.result-sub{color:var(--color-text-muted);line-height:1.7;max-width:40ch;margin:0 auto}
+.result-explain{padding:var(--space-5);background:var(--color-surface-offset);border-radius:var(--radius-xl);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;text-align:left}
+.result-explain strong{color:var(--color-text);display:block;margin-bottom:var(--space-1)}
+.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+.result-stat{padding:var(--space-5);background:var(--color-surface-offset);border-radius:var(--radius-xl)}
+.result-stat .k{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint)}
+.result-stat .v{font-family:var(--font-display);font-size:var(--text-xl);margin-top:.2rem}
+.share{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset);color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.6}
+.share strong{color:var(--color-text)}
+.hidden{display:none!important}
+footer{padding:0 0 var(--space-10);text-align:center;color:var(--color-text-faint);font-size:var(--text-xs)}
+@media(max-width:700px){.game-shell,.intro-box,.result-box{padding:var(--space-5)}.intro-grid,.result-stats{grid-template-columns:1fr}.timer-wrap{flex-direction:row;justify-content:space-between}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">🧒</div>
+      <div class="brand-name">Zero<span>Virgola</span></div>
+    </a>
+    <div class="nav-actions">
+      <button class="theme-btn" id="themeBtn" aria-label="Cambia tema"></button>
+      <a class="ghost-btn" href="index.html">← Home</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero container">
+  <div class="eyebrow">Quinto gioco · 30 secondi · Semplicità</div>
+  <h1 class="title">Spiega a <em>6 Anni</em></h1>
+  <p class="sub">Ti diamo una parola complicata. Devi spiegarla usando solo parole che conosce un bambino di prima elementare. Il sistema analizza quanto sei stato semplice.</p>
+</section>
+
+<section class="stage container">
+  <!-- INTRO -->
+  <div class="card intro-box" id="introScreen">
+    <div>
+      <div class="title" style="font-size:var(--text-xl)">Parla come se avessi 6 anni</div>
+      <p class="sub" style="margin-top:var(--space-3)">Niente parole difficili. Niente gergo tecnico. Se la scrivi con le parole di un bambino, il punteggio sale. Se usi paroloni, il sistema li evidenzia in rosso.</p>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-item"><strong>30 secondi</strong><p>Hai il tempo di una spiegazione veloce e chiara.</p></div>
+      <div class="intro-item"><strong>Parole vietate</strong><p>La parola stessa e i suoi sinonimi ovvi non si possono usare.</p></div>
+      <div class="intro-item"><strong>Punteggio</strong><p>Il sistema conta quante parole "difficili" hai usato e calcola la semplicità.</p></div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <button class="btn-primary" id="startBtn">Dammi una parola</button>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <div class="card game-shell hidden" id="gameScreen">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:var(--space-4)">
+      <div class="word-card" style="flex:1;min-width:200px;">
+        <div class="word-hint">Spiega questa parola:</div>
+        <div class="word-main" id="wordDisplay">Inflazione</div>
+      </div>
+      <div class="timer-wrap">
+        <div class="timer-ring">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle class="ring-track" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill" id="ringFill" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="ring-num" id="timerNum">30</div>
+        </div>
+        <div class="timer-label">secondi</div>
+      </div>
+    </div>
+
+    <div class="forbidden-wrap" id="forbiddenWrap">
+      <div class="forbidden-label">Parole vietate:</div>
+    </div>
+
+    <div class="textarea-wrap">
+      <textarea id="explanation" placeholder="Scrivi qui la tua spiegazione... come se parlassi a un bambino di 6 anni." maxlength="400"></textarea>
+      <div class="char-count"><span id="charCount">0</span>/400</div>
+    </div>
+
+    <div class="meter-wrap">
+      <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+      <div class="meter-labels"><span>Troppo difficile</span><span>Perfetto per 6 anni</span></div>
+    </div>
+
+    <div class="feedback hidden" id="feedback"></div>
+
+    <div class="actions">
+      <button class="btn-primary" id="submitBtn">Invia Spiegazione</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="card result-box hidden" id="resultScreen">
+    <div class="result-score" id="resultScore">820</div>
+    <div class="result-title" id="resultTitle">Quasi perfetto!</div>
+    <p class="result-sub" id="resultSub">Hai trovato un buon equilibrio tra semplicita e completezza.</p>
+
+    <div class="result-explain" id="resultExplain">
+      <strong>La tua spiegazione:</strong>
+      <span id="resultText"></span>
+    </div>
+
+    <div class="result-stats">
+      <div class="result-stat"><div class="k">Punteggio</div><div class="v" id="statScore">0</div></div>
+      <div class="result-stat"><div class="k">Parole difficili</div><div class="v" id="statHard">0</div></div>
+      <div class="result-stat"><div class="k">Record</div><div class="v" id="statBest">0</div></div>
+    </div>
+
+    <div class="share" id="shareBox">
+      🧒 Ho spiegato <strong>Inflazione</strong> con un punteggio di <strong>820/1000</strong> su ZeroVirgola. Riesci a essere piu semplice di me?
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap">
+      <button class="btn-primary" id="againBtn">Prova un altra parola</button>
+      <button class="btn-secondary" id="copyBtn">Copia risultato</button>
+      <a class="btn-secondary" href="index.html">Torna alla home</a>
+    </div>
+  </div>
+</section>
+
+<footer>ZeroVirgola · Spiega a 6 Anni · 2026</footer>
+
+<script>
+const challenges = [
+  {word:"Inflazione", forbidden:["inflazione","prezzi","costo","economia","denaro"], hint:"Come spiegheresti a un bimbo perche il gelato costa di piu ogni anno?"},
+  {word:"Democrazia", forbidden:["democrazia","voto","governo","politica","stato","elezioni"], hint:"Come funziona decidere le cose quando siete in tanti e non siete d'accordo?"},
+  {word:"Gravita", forbidden:["gravita","forza","peso","attrazione","fisica","massa"], hint:"Perche le cose cadono sempre giu e non volano via?"},
+  {word:"Internet", forbidden:["internet","rete","web","connessione","server","digitale"], hint:"Come fanno le persone di tutto il mondo a parlarsi senza muoversi da casa?"},
+  {word:"Fotosintesi", forbidden:["fotosintesi","clorofilla","ossigeno","pianta","luce","carbonio"], hint:"Come fanno le piante a mangiare senza avere la bocca?"},
+  {word:"Terremoto", forbidden:["terremoto","sisma","placche","scossa","magnitudo"], hint:"Come mai ogni tanto la terra si muove e trema?"},
+  {word:"Memoria", forbidden:["memoria","cervello","ricordo","mente","neurone","pensiero"], hint:"Come mai ti ricordi ancora la canzone preferita di quando eri piccolo?"},
+  {word:"Elettricita", forbidden:["elettricita","corrente","energia","volt","ampere","circuito","carica"], hint:"Cos'e quella cosa che fa funzionare la luce, il telefono e il frigo?"},
+  {word:"Buco Nero", forbidden:["buco nero","galassia","spazio","gravita","universo","stella","luce"], hint:"Cosa c'e nello spazio che mangia tutto quello che si avvicina, anche la luce?"},
+  {word:"Riciclaggio", forbidden:["riciclaggio","riciclo","rifiuti","plastica","spazzatura","ambiente"], hint:"Come mai bisogna buttare la bottiglia in quel contenitore giallo e non nel bidone normale?"},
+  {word:"Musica", forbidden:["musica","suono","nota","melodia","ritmo","strumento"], hint:"Come mai alcune cose che si sentono ti fanno venire voglia di ballare o ti fanno triste?"},
+  {word:"Sogno", forbidden:["sogno","sonno","cervello","mente","subconscio","immagine"], hint:"Perche quando dormi vedi e senti cose che non esistono davvero?"}
+];
+
+// Word complexity: rough list of "hard" Italian words
+const hardWords = new Set(["mediante","pertanto","tuttavia","quindi","dunque","nonche","affinche","benche","sebbene","nonostante","qualora","laddove","altresi","altrettanto","ebbene","invero","nondimeno","conseguentemente","simultaneamente","preliminarmente","contestualmente","successivamente","precedentemente","attualmente","sostanzialmente","fondamentalmente","principalmente","essenzialmente","caratteristicamente","necessariamente","inevitabilmente","presumibilmente","apparentemente","relativamente","assolutamente","complessivamente","generalmente","frequentemente","abitualmente","normalmente","tipicamente","specificamente","particolarmente","genericamente","teoricamente","praticamente","tecnicamente","scientificamente","economicamente","socialmente","politicamente","culturalmente","storicamente","matematicamente","geograficamente","biologicamente","chimicamente","fisicamente","elettricamente","meccanicamente","digitalmente","virtualmente","logicamente","razionalmente","sistematicamente","metodicamente","analiticamente","sinteticamente","globalmente","localmente","individualmente","collettivamente","progressivamente","gradualmente","costantemente","continuamente","periodicamente","occasionalmente","raramente","frequentemente","recentemente","attualmente","inizialmente","finalmente","eventualmente","probabilmente","sicuramente","certamente","ovviamente","evidentemente","chiaramente","esplicitamente","implicitamente","formalmente","informalmente","ufficialmente","legalmente","tecnologicamente","informaticamente","biochimicamente","elettromagneticamente","termodinamicamente","macroeconomicamente","microeconomicamente","demograficamente","sociologicamente","psicologicamente","antropologicamente","filosoficamente","epistemologicamente","ontologicamente","metafisicamente","strutturalmente","funzionalmente","organizzativamente","amministrativamente","burocraticamente","parlamentarmente","costituzionalmente","istituzionalmente","democraticamente","autoritariamente","ideologicamente","dogmaticamente","pragmaticamente","empiricamente","sperimentalmente","osservazionalmente","statisticamente","probabilisticamente","algoritmicamente","computazionalmente","cryptograficamente","thermicamente","entropicamente","cinetico","potenziale","vettoriale","scalare","matriciale","tensoriale","differenziale","integrale","derivata","coefficiente","parametro","variabile","costante","funzione","equazione","disequazione","polinomio","logaritmo","esponenziale","trigonometrico","geometrico","algebrico","aritmetico","numerico","decimale","frazionario","razionale","irrazionale","complesso","immaginario","infinitesimale","infinito","limite","convergenza","divergenza","sequenza","serie","insieme","sottoinsieme","intersezione","unione","complemento","permutazione","combinazione","probabilita","statistica","distribuzione","regressione","correlazione","varianza","deviazione","mediana","moda","media","campione","popolazione","ipotesi","significativita","confidenza","inferenza","deduzione","induzione","abduzione","sillogismo","assioma","teorema","lemma","corollario","dimostrazione","postulato"]);
+
+const shortWords = new Set(["il","lo","la","i","gli","le","un","una","di","a","da","in","con","su","per","tra","fra","e","o","ma","se","che","chi","ci","ne","si","mi","ti","vi","li","le","gli","questo","quello","come","dove","quando","perche","cosa","chi","quale","quanto","bene","male","piu","meno","molto","poco","tutto","niente","sempre","mai","oggi","ieri","domani","qui","la","su","giu","dentro","fuori","sopra","sotto","davanti","dietro","grande","piccolo","bello","brutto","buono","cattivo","nuovo","vecchio","lungo","corto","alto","basso","caldo","freddo","duro","morbido","veloce","lento","forte","debole","vero","falso","aperto","chiuso","pieno","vuoto","stesso","diverso","solo","insieme","subito","ancora","adesso","prima","dopo","spesso","forse","anche","proprio","quasi","tanto","abbastanza","ogni","altro","fare","avere","essere","andare","venire","vedere","sapere","potere","volere","dovere","dare","prendere","mettere","togliere","sentire","parlare","dire","capire","pensare","credere","trovare","cercare","lasciare","portare","tornare","entrare","uscire","aprire","chiudere","mangiare","bere","dormire","svegliarsi","correre","camminare","giocare","lavorare","studiare","leggere","scrivere","disegnare","cantare","ballare","ridere","piangere","bambino","mamma","papa","casa","scuola","amico","gatto","cane","sole","luna","stelle","acqua","fuoco","terra","aria","pane","latte","mela","albero","fiore","gioco","libro","palla","macchina","treno","aereo"]);
+
+let currentChallenge = null;
+let timerInterval = null;
+let timeLeft = 30;
+let finalScore = 0;
+let finalHardCount = 0;
+
+function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
+function show(id){ ["introScreen","gameScreen","resultScreen"].forEach(s => document.getElementById(s).classList.add("hidden")); document.getElementById(id).classList.remove("hidden"); }
+function loadBest(){ return JSON.parse(localStorage.getItem("zerovirgola_spiega6_best") || '{"score":0}'); }
+function saveBest(s){ const b = loadBest(); if(s > b.score){ localStorage.setItem("zerovirgola_spiega6_best", JSON.stringify({score:s})); return s; } return b.score; }
+
+// Theme
+(function(){
+  const btn = document.getElementById("themeBtn");
+  const root = document.documentElement;
+  let theme = root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+  root.setAttribute("data-theme", theme);
+  function updateIcon(){ btn.innerHTML = theme === "dark" ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>' : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'; }
+  updateIcon();
+  btn.onclick = () => { theme = theme === "dark" ? "light" : "dark"; root.setAttribute("data-theme", theme); updateIcon(); };
+})();
+
+function startGame(){
+  currentChallenge = shuffle(challenges)[0];
+  timeLeft = 30;
+  document.getElementById("wordDisplay").textContent = currentChallenge.word;
+
+  // Show forbidden pills
+  const fw = document.getElementById("forbiddenWrap");
+  fw.innerHTML = '<div class="forbidden-label">Parole vietate:</div>';
+  currentChallenge.forbidden.forEach(w => {
+    const pill = document.createElement("span");
+    pill.className = "forbidden-pill";
+    pill.textContent = w;
+    fw.appendChild(pill);
+  });
+
+  document.getElementById("explanation").value = "";
+  document.getElementById("charCount").textContent = "0";
+  document.getElementById("meterFill").style.width = "0%";
+  document.getElementById("feedback").className = "feedback hidden";
+  document.getElementById("submitBtn").disabled = false;
+  document.getElementById("explanation").disabled = false;
+
+  const ring = document.getElementById("ringFill");
+  ring.className = "ring-fill";
+
+  show("gameScreen");
+  document.getElementById("explanation").focus();
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timerNum").textContent = timeLeft;
+    const pct = timeLeft / 30;
+    document.getElementById("ringFill").style.strokeDashoffset = 283 * (1 - pct);
+    if(timeLeft <= 10) ring.classList.add("urgent");
+    if(timeLeft <= 5){ ring.classList.remove("urgent"); ring.classList.add("danger"); }
+    if(timeLeft <= 0){ clearInterval(timerInterval); submitExplanation(); }
+  }, 1000);
+}
+
+function analyzeText(text){
+  const words = text.toLowerCase().replace(/[^a-z\s]/g, "").split(/\s+/).filter(w => w.length > 0);
+  const totalWords = words.length;
+  if(totalWords === 0) return { score: 0, hardCount: 0, hardList: [], highlighted: text };
+
+  const usedForbidden = [];
+  const hardWordsFound = [];
+
+  words.forEach(w => {
+    if(currentChallenge.forbidden.includes(w)) usedForbidden.push(w);
+    else if(w.length > 10 && !shortWords.has(w)) hardWordsFound.push(w);
+    else if(hardWords.has(w)) hardWordsFound.push(w);
+  });
+
+  const hardCount = usedForbidden.length * 3 + hardWordsFound.length;
+  let score = 1000;
+  score -= usedForbidden.length * 200;
+  score -= hardWordsFound.length * 80;
+  if(totalWords < 5) score -= 200;
+  if(totalWords > 15 && totalWords < 50) score += 50;
+  score = Math.max(0, Math.min(1000, score));
+
+  // Highlight hard/forbidden words in text
+  let highlighted = text;
+  const toHighlight = [...new Set([...usedForbidden, ...hardWordsFound])];
+  toHighlight.forEach(w => {
+    const re = new RegExp("\b" + w + "\b", "gi");
+    highlighted = highlighted.replace(re, match => `<span class="highlighted-word">${match}</span>`);
+  });
+
+  return { score: Math.round(score), hardCount, hardList: toHighlight, highlighted };
+}
+
+document.getElementById("explanation").addEventListener("input", function(){
+  const len = this.value.length;
+  document.getElementById("charCount").textContent = len;
+  const analysis = analyzeText(this.value);
+  document.getElementById("meterFill").style.width = (analysis.score / 10) + "%";
+});
+
+function submitExplanation(){
+  clearInterval(timerInterval);
+  const text = document.getElementById("explanation").value.trim();
+  document.getElementById("explanation").disabled = true;
+  document.getElementById("submitBtn").disabled = true;
+
+  if(text.length < 5){
+    const fb = document.getElementById("feedback");
+    fb.className = "feedback bad show";
+    fb.innerHTML = "<strong>Hai scritto troppo poco!</strong><p>Dai, anche un bambino ci prova di piu.</p>";
+    return;
+  }
+
+  const result = analyzeText(text);
+  finalScore = result.score;
+  finalHardCount = result.hardCount;
+
+  setTimeout(() => showResult(text, result), 600);
+}
+
+function showResult(text, result){
+  const best = saveBest(result.score);
+
+  document.getElementById("resultScore").textContent = result.score;
+  document.getElementById("statScore").textContent = result.score;
+  document.getElementById("statHard").textContent = result.hardCount;
+  document.getElementById("statBest").textContent = best;
+  document.getElementById("resultText").innerHTML = result.highlighted;
+
+  let title = "Ottima semplicita";
+  let sub = "Hai trovato il giusto equilibrio. Un bambino ti capirebbe.";
+  if(result.score >= 900){ title = "Spiegazione perfetta!"; sub = "Un bambino di 6 anni ti capirebbe al volo. Chapeau."; }
+  else if(result.score >= 700){ title = "Molto semplice"; sub = "Quasi perfetto. Potresti togliere ancora qualche parolona."; }
+  else if(result.score >= 500){ title = "Abbastanza chiaro"; sub = "Non male, ma ci sono ancora parole che un bimbo non conosce."; }
+  else if(result.score >= 250){ title = "Troppo complicato"; sub = "Un bambino di 6 anni ti guarderebbe con occhi sbarrati."; }
+  else { title = "Sei un professore universitario"; sub = "Perfetto per un dottorato. Inutile per un bambino di prima elementare."; }
+
+  document.getElementById("resultTitle").textContent = title;
+  document.getElementById("resultSub").textContent = sub;
+  document.getElementById("shareBox").innerHTML = `🧒 Ho spiegato <strong>${currentChallenge.word}</strong> con un punteggio di <strong>${result.score}/1000</strong> su ZeroVirgola. Riesci a essere piu semplice di me?`;
+
+  show("resultScreen");
+}
+
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("againBtn").addEventListener("click", startGame);
+document.getElementById("submitBtn").addEventListener("click", submitExplanation);
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  const text = `🧒 Ho spiegato "${currentChallenge.word}" con un punteggio di ${finalScore}/1000 su ZeroVirgola.
+Parole difficili trovate: ${finalHardCount}. Riesci a fare di meglio? → zerovirgola.it`;
+  await navigator.clipboard.writeText(text);
+  document.getElementById("copyBtn").textContent = "Copiato!";
+  setTimeout(() => document.getElementById("copyBtn").textContent = "Copia risultato", 1800);
+});
+</script>
+</body>
+</html>
